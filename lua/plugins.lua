@@ -1,85 +1,75 @@
-require("paq")({
-    {"savq/paq-nvim"},
-    {"nvim-lua/plenary.nvim"},
+-- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
-    -- editor
-    {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
-    {"p00f/nvim-ts-rainbow"},
-    {"numToStr/Comment.nvim"},
-    {"lukas-reineke/indent-blankline.nvim"},
+-- Only required if you have packer configured as `opt`
+vim.cmd [[packadd packer.nvim]]
 
-    {"famiu/bufdelete.nvim"},
+return require('packer').startup(function(use)
+	-- Packer can manage itself
+	use 'wbthomason/packer.nvim'
 
-    {"lewis6991/gitsigns.nvim"},
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = {
+			'kyazdani42/nvim-web-devicons', -- optional, for file icons
+		},
+		tag = 'nightly' -- optional, updated every week. (see issue #1193)
+	}
 
-    {"windwp/nvim-autopairs"},
-    {"windwp/nvim-ts-autotag"},
+	-- Color Scheme
+	use {"tiagovla/tokyodark.nvim"}
 
-    {"norcalli/nvim-colorizer.lua"},
 
-    {"terryma/vim-multiple-cursors"},
-    {"rinx/nvim-minimap"},
+	use {"nvim-lua/plenary.nvim"}
+	use {"nvim-telescope/telescope.nvim"}
+	use {"LinArcX/telescope-command-palette.nvim"}
+	use {"Xuyuanp/scrollbar.nvim"}
+	use {"petertriho/nvim-scrollbar"}
+	use {"nanozuki/tabby.nvim"}
+	use({
+		'noib3/nvim-cokeline',
+		requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
+		config = function()
+			require('cokeline').setup()
+		end
+	})
+	use {"SmiteshP/nvim-gps"}
+	use {"nvim-treesitter/nvim-treesitter"}
+	use {"p00f/nvim-ts-rainbow"}
+	use {"numToStr/Comment.nvim"}
+	use {"lukas-reineke/indent-blankline.nvim"}
+	use {
+		"windwp/nvim-autopairs",
+		config = function() require("nvim-autopairs").setup {} end
+	}
+	use {
+		'nvim-lualine/lualine.nvim'
+	}
+	use {'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'}
+	use {"gelguy/wilder.nvim"}
+	use {"nixprime/cpsm"}
+	use {"sharkdp/fd"}
+	use { "romgrk/fzy-lua-native" }
+	use {'VonHeikemen/lsp-zero.nvim'}
+	-- LSP Support
+	use {'neovim/nvim-lspconfig'}
+	use {'williamboman/mason.nvim'}
+	use {'williamboman/mason-lspconfig.nvim'}
 
-    -- lsp
-    {"williamboman/nvim-lsp-installer"},
-    {"neovim/nvim-lspconfig"},
-    {"ray-x/lsp_signature.nvim"},
+	-- Autocompletion
+	use {'hrsh7th/nvim-cmp'}
+	use {'hrsh7th/cmp-buffer'}
+	use {'hrsh7th/cmp-path'}
+	use {'saadparwaiz1/cmp_luasnip'}
+	use {'hrsh7th/cmp-nvim-lsp'}
+	use {'hrsh7th/cmp-nvim-lua'}
+	use {'folke/lsp-colors.nvim'}
 
-    {"j-hui/fidget.nvim"},
-    {"onsails/lspkind-nvim"},
-    {"OmniSharp/omnisharp-vim"},
+	-- Snippets
+	use {'hrsh7th/cmp-vsnip'}
+	use {'hrsh7th/vim-vsnip'}
 
-    -- completion
-    {"L3MON4D3/LuaSnip"},
-    {"saadparwaiz1/cmp_luasnip"},
-    {"rafamadriz/friendly-snippets"},
-
-    {"hrsh7th/cmp-nvim-lsp"}, -- nvim-cmp source for neovim builtin LSP client
-    {"hrsh7th/cmp-path"}, -- nvim-cmp source for path
-    {"hrsh7th/cmp-buffer"}, -- nvim-cmp source for buffer words
-    {"hrsh7th/cmp-nvim-lua"}, -- nvim-cmp source for nvim lua
-    {"hrsh7th/cmp-emoji"}, -- nvim-cmp source for emoji
-    {"f3fora/cmp-spell"}, -- spell source for nvim-cmp based on vim's spellsuggest
-    {"hrsh7th/nvim-cmp"},
-
-    -- dap
-    {"mfussenegger/nvim-dap"},
-    {"rcarriga/nvim-dap-ui"},
-    {"theHamsta/nvim-dap-virtual-text"},
-
-    -- ui
-    {"projekt0n/github-nvim-theme"},
-    {"kyazdani42/nvim-web-devicons"},
-    {"kyazdani42/nvim-tree.lua"},
-    {"akinsho/nvim-bufferline.lua"},
-    {"NLKNguyen/papercolor-theme"},
-    -- ui -- statusline
-    {"nvim-lualine/lualine.nvim"},
-    {"SmiteshP/nvim-gps"},
-    {"dracula/vim"},
-
-    -- navigator
-    {"ray-x/guihua.lua", run = "cd lua/fzy && make"},
-    {"ray-x/navigator.lua"},
-
-    -- telescope
-    {"nvim-telescope/telescope.nvim"},
-    {"cljoly/telescope-repo.nvim"},
-    {"nvim-telescope/telescope-file-browser.nvim"},
-    {"nvim-telescope/telescope-dap.nvim"},
-
-    -- symbols outline
-    {"simrat39/symbols-outline.nvim"},
-
-    -- trouble
-    {"folke/trouble.nvim"},
-
-    -- alpha
-    {"goolord/alpha-nvim"},
-
-    -- git
-    {"TimUntersberger/neogit"},
-    {"sindrets/diffview.nvim"},
-
-    {"ahmedkhalf/project.nvim"},
-})
+	-- LANG
+	use {"fatih/vim-go"}
+	use {"leoluz/nvim-dap-go"}
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+end)

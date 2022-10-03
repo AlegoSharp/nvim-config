@@ -1,25 +1,21 @@
-local cmp = require 'cmp'
+vim.cmd [[behave mswin]]
+vim.cmd [[set number]]
 
-require("preferences")
+vim.opt.ve = "onemore"
+vim.opt.mouse = "a"
 
-require("theme")
+vim.o.showtabline = 4
+
+vim.opt.listchars = {tab = "••", trail = "•", space = "•", extends = "»", precedes = "«"}
+vim.opt.ignorecase = true
+
+vim.g.netrw_liststyle = 3
+vim.g.netrw_banner = 0
+vim.g.mapleader = ' '
+
+vim.cmd [["hi Normal guibg=#151515"]]
 
 require("plugins")
-require("plugconfig")
-
-require("mappings")
-
-
-cmp.setup {
-  mapping = {
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    })
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-  }
-}
+require("pluginsconf")
+require("mapping")
+require("theme")
